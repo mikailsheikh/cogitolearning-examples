@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layer-list xmlns:android="http://schemas.android.com/apk/res/android" >
+    <item android:drawable="@drawable/ic_action_person" />
+	<item>
+	    <shape>
+	        <gradient android:startColor="@color/transparent_blue"
+				android:endColor="@color/less_transparent_blue"
+				android:angle="-90"/>
+	        
+	    </shape> 
+	    </item>
+</layer-list>
