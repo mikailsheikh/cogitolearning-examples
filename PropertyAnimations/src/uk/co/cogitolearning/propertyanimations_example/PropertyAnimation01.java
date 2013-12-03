@@ -28,7 +28,6 @@ public class PropertyAnimation01 extends Activity
 
   public void flipOnVertical(View view)
   {
-    Log.d("propertyanimations", "flipOnVertical");
     View image = findViewById(R.id.some_image);
     Animator anim = AnimatorInflater.loadAnimator(this, R.animator.flip_on_vertical);
     anim.setTarget(image);

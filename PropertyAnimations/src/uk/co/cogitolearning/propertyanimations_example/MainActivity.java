@@ -23,10 +23,22 @@ public class MainActivity extends Activity
     getMenuInflater().inflate(R.menu.main, menu);
     return true;
   }
-  
+
   public void goExample1(View view)
   {
     Intent intent = new Intent(this, PropertyAnimation01.class);
+    startActivity(intent);
+  }
+
+  public void goExample2(View view)
+  {
+    Intent intent = new Intent(this, PropertyAnimation02.class);
+    startActivity(intent);
+  }
+  
+  public void goExample3(View view)
+  {
+    Intent intent = new Intent(this, PropertyAnimation03.class);
     startActivity(intent);
   }
 
