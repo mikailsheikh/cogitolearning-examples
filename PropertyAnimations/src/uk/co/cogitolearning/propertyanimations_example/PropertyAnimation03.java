@@ -1,5 +1,6 @@
 package uk.co.cogitolearning.propertyanimations_example;
 
+import android.animation.AnimatorSet;
 import android.animation.ObjectAnimator;
 import android.app.Activity;
 import android.os.Bundle;
@@ -27,8 +28,9 @@ public class PropertyAnimation03 extends Activity
 
   public void flipOnVertical(View view)
   {
-    View image = findViewById(R.id.policebox);
-    ObjectAnimator anim = ObjectAnimator.ofFloat(image, "alpha", 1.0f, 0.5f, 0.75f, 0.25f, 0.5f, 0.0f);
+    View policebox = findViewById(R.id.policebox);
+    ObjectAnimator anim = ObjectAnimator.ofFloat(policebox, "alpha", 1.0f, 0.25f, 0.75f, 0.15f, 0.5f, 0.0f);
+    
     anim.setDuration(5000);
     anim.setInterpolator(new LinearInterpolator());
     anim.start();

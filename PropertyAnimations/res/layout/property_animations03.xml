@@ -16,6 +16,6 @@
         android:layout_centerInParent="true"
         android:src="@drawable/policebox"
         android:text="@string/example1"
-        android:onClick="flipOnVertical" />
+        android:onClick="flipOnVertical"/>
 
 </RelativeLayout>

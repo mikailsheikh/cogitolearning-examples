@@ -31,5 +31,13 @@
         android:layout_below="@id/example2_button"
         android:text="@string/example3"
         android:onClick="goExample3" />
+    <Button
+        android:id="@+id/example4_button"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_centerHorizontal="true"
+        android:layout_below="@id/example3_button"
+        android:text="@string/example4"
+        android:onClick="goExample4" />
 
 </RelativeLayout>
