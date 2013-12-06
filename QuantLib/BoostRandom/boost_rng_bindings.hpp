@@ -37,6 +37,7 @@ class GenericBoostIntRNG
     GenericBoostIntRNG(result_type seed = 0);
 
     //! return a random number in the (0.0, 1.0)-interval
+    //! For random number generators with a precision larger than
     Real nextReal() const
     {
       return (Real(generator()) + 0.5) / ceil_value;
