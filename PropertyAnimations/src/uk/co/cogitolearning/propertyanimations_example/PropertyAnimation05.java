@@ -6,6 +6,9 @@ import android.app.Activity;
 import android.os.Bundle;
 import android.view.Menu;
 import android.view.View;
+import android.view.animation.AccelerateDecelerateInterpolator;
+import android.view.animation.AccelerateInterpolator;
+import android.view.animation.DecelerateInterpolator;
 import android.view.animation.LinearInterpolator;
 
 public class PropertyAnimation05 extends Activity
@@ -32,10 +35,19 @@ public class PropertyAnimation05 extends Activity
     
     View someImage = findViewById(R.id.some_image);
     
-    ObjectAnimator anim1 = ObjectAnimator.ofFloat(someImage, "x", 20.0f*scale, 120.0f*scale);
-    ObjectAnimator anim2 = ObjectAnimator.ofFloat(someImage, "y", 20.0f*scale, 120.0f*scale);
-    ObjectAnimator anim3 = ObjectAnimator.ofFloat(someImage, "x", 120.0f*scale, 20.0f*scale);
-    ObjectAnimator anim4 = ObjectAnimator.ofFloat(someImage, "y", 120.0f*scale, 20.0f*scale);
+    ObjectAnimator anim1 = ObjectAnimator.ofFloat(someImage, "x", 20.0f*scale, 220.0f*scale);
+    ObjectAnimator anim2 = ObjectAnimator.ofFloat(someImage, "y", 20.0f*scale, 220.0f*scale);
+    ObjectAnimator anim3 = ObjectAnimator.ofFloat(someImage, "x", 220.0f*scale, 20.0f*scale);
+    ObjectAnimator anim4 = ObjectAnimator.ofFloat(someImage, "y", 220.0f*scale, 20.0f*scale);
+    anim1.setDuration(500);
+    anim2.setDuration(500);
+    anim3.setDuration(1000);
+    anim4.setDuration(1000);
+
+    anim1.setInterpolator(new AccelerateInterpolator());
+    anim2.setInterpolator(new DecelerateInterpolator());
+    anim3.setInterpolator(new LinearInterpolator());
+    anim4.setInterpolator(new AccelerateDecelerateInterpolator());
     
     AnimatorSet animSet = new AnimatorSet();
     
@@ -49,8 +61,8 @@ public class PropertyAnimation05 extends Activity
     animSet.play(anim1).before(anim2).after(500);
     animSet.play(anim3).after(anim2).with(anim4);
     
-    animSet.setDuration(1000);
-    animSet.setInterpolator(new LinearInterpolator());
+//    animSet.setDuration(1000);
+//    animSet.setInterpolator(new AccelerateDecelerateInterpolator());
     animSet.start();
   }
 
