@@ -39,6 +39,8 @@ public class PropertyAnimation05 extends Activity
     ObjectAnimator anim2 = ObjectAnimator.ofFloat(someImage, "y", 20.0f*scale, 220.0f*scale);
     ObjectAnimator anim3 = ObjectAnimator.ofFloat(someImage, "x", 220.0f*scale, 20.0f*scale);
     ObjectAnimator anim4 = ObjectAnimator.ofFloat(someImage, "y", 220.0f*scale, 20.0f*scale);
+    
+    // Fine grained control over all animations inside the set
     anim1.setDuration(500);
     anim2.setDuration(500);
     anim3.setDuration(1000);
@@ -51,7 +53,7 @@ public class PropertyAnimation05 extends Activity
     
     AnimatorSet animSet = new AnimatorSet();
     
-    //  Long version
+    //  Long version to set up animation set
 //    animSet.play(anim1).before(anim2);
 //    animSet.play(anim3).after(anim2);
 //    animSet.play(anim3).with(anim4);
@@ -61,6 +63,7 @@ public class PropertyAnimation05 extends Activity
     animSet.play(anim1).before(anim2).after(500);
     animSet.play(anim3).after(anim2).with(anim4);
     
+    // Global control. Uncomment if not using fine grained control
 //    animSet.setDuration(1000);
 //    animSet.setInterpolator(new AccelerateDecelerateInterpolator());
     animSet.start();
