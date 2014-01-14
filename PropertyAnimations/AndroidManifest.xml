@@ -38,6 +38,9 @@
         <activity
             android:name="uk.co.cogitolearning.propertyanimations_example.PropertyAnimation05"
             android:label="@string/app_name" />
+        <activity
+            android:name="uk.co.cogitolearning.propertyanimations_example.PropertyAnimation06"
+            android:label="@string/app_name" />
     </application>
 
 </manifest>

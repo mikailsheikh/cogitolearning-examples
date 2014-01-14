@@ -47,10 +47,16 @@ public class MainActivity extends Activity
     Intent intent = new Intent(this, PropertyAnimation04.class);
     startActivity(intent);
   }
-  
+
   public void goExample5(View view)
   {
     Intent intent = new Intent(this, PropertyAnimation05.class);
+    startActivity(intent);
+  }
+  
+  public void goExample6(View view)
+  {
+    Intent intent = new Intent(this, PropertyAnimation06.class);
     startActivity(intent);
   }
 
