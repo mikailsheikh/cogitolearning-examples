@@ -50,8 +50,6 @@ class GenericBoostIntRNG
       return sample_type(nextReal(), 1.0);
     }
 
-
-
   private:
     result_type getSeed(result_type seed);
 };
