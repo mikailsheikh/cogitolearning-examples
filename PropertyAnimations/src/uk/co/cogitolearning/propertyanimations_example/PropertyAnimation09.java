@@ -34,8 +34,8 @@ public class PropertyAnimation09 extends Activity
 
       ObjectAnimator rotateAnim = ObjectAnimator.ofFloat(someImage, "rotation", 0, 360);
       rotateAnim.setDuration(1000);
-      //rotateAnim.setRepeatCount(5);
-      //rotateAnim.setRepeatMode(ObjectAnimator.RESTART);
+      rotateAnim.setRepeatCount(5);
+      rotateAnim.setRepeatMode(ObjectAnimator.RESTART);
 
       TimeAnimator.TimeListener listener = new FpsTimeListener(fpsText);
       final TimeAnimator timeAnim = new TimeAnimator();
@@ -43,7 +43,7 @@ public class PropertyAnimation09 extends Activity
       timeAnim.setDuration(1000);
       anim = new AnimatorSet();
       anim.play(rotateAnim).with(timeAnim);
-      anim.addListener(new Animator.AnimatorListener()
+      rotateAnim.addListener(new Animator.AnimatorListener()
       {
         
         @Override
@@ -55,8 +55,8 @@ public class PropertyAnimation09 extends Activity
         @Override
         public void onAnimationEnd(Animator animation)
         {
-          timeAnim.end();
           
+          timeAnim.end(); 
         }
         
         @Override
