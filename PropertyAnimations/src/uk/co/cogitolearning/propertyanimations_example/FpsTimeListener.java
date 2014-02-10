@@ -20,10 +20,12 @@ class FpsTimeListener implements TimeListener
 
   public void onTimeUpdate(TimeAnimator animation, long totalTime, long deltaTime)
   {
-    
+
     double currentFps;
-    if (deltaTime != 0) currentFps = 1000.0 / (double) deltaTime;
-    else currentFps = 0.9*fps;
+    if (deltaTime != 0)
+      currentFps = 1000.0 / (double) deltaTime;
+    else
+      currentFps = 0.9 * fps;
     if (fps < 0.0)
       fps = currentFps;
     else
