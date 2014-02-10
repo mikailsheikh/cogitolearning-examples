@@ -39,7 +39,7 @@ public class Test
     Parser parser = new Parser();
     try
     {
-      ExpressionNode expr = parser.parse("2)2*2");
+      ExpressionNode expr = parser.parse("2*(1+sin(pi/2))^2");
       expr.accept(new SetVariable("pi", Math.PI));
       System.out.println("The value of the expression is "+expr.getValue());
       

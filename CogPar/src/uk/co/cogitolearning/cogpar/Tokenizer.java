@@ -124,7 +124,7 @@ public class Tokenizer
    */
   public void add(String regex, int token)
   {
-    tokenInfos.add(new TokenInfo(Pattern.compile("^" + regex), token));
+    tokenInfos.add(new TokenInfo(Pattern.compile("^(" + regex+")"), token));
   }
 
   /**

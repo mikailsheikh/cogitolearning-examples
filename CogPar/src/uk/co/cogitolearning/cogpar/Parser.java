@@ -77,10 +77,6 @@ public class Parser
     Tokenizer tokenizer = Tokenizer.getExpressionTokenizer();
     tokenizer.tokenize(expression);
     LinkedList<Token> tokens = tokenizer.getTokens();
-    for (Token t : tokens)
-    {
-      System.out.println(t.token);
-    }
     return this.parse(tokens);
   }
 
@@ -203,16 +199,6 @@ public class Parser
   /** handles the non-terminal factor */
   private ExpressionNode factor()
   {
-    // factor -> FUNCTION argument
-    if (lookahead.token == Token.FUNCTION)
-    {
-      int function = FunctionExpressionNode.stringToFunction(lookahead.sequence);
-      if (function < 0) throw new ParserException("Unexpected Function %s found", lookahead);
-      nextToken();
-      ExpressionNode expr = factor();
-      return new FunctionExpressionNode(function, expr);
-    }
-
     // factor -> argument factor_op
     ExpressionNode a = argument();
     return factorOp(a);
@@ -237,8 +223,17 @@ public class Parser
   /** handles the non-terminal argument */
   private ExpressionNode argument()
   {
+    // argument -> FUNCTION argument
+    if (lookahead.token == Token.FUNCTION)
+    {
+      int function = FunctionExpressionNode.stringToFunction(lookahead.sequence);
+      if (function < 0) throw new ParserException("Unexpected Function %s found", lookahead);
+      nextToken();
+      ExpressionNode expr = argument();
+      return new FunctionExpressionNode(function, expr);
+    }
     // argument -> OPEN_BRACKET sum CLOSE_BRACKET
-    if (lookahead.token == Token.OPEN_BRACKET)
+    else if (lookahead.token == Token.OPEN_BRACKET)
     {
       nextToken();
       ExpressionNode expr = expression();
