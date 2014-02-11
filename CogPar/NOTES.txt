@@ -1,0 +1,39 @@
+                CogPar 1.0.1
+                ============
+                
+Release Notes
+=============
+
+Welcome to CogPar version 1.0.1
+
+CogPar is lightweight but versatile parser for mathematical expressions.It can 
+be used to analyse expressions and store them in an internal data structure for 
+later evaluation. Repeated evaluation of the same expression using CogPar is 
+fast.
+
+CogPar comes with a highly configurable tokenizer which can be adapted for your
+own needs.
+
+Arbitrary named variables are supported and values can be assigned in a single 
+line of code.
+
+The parser, it's grammar an the tokenizer are well documented. You can read more
+about the internal workings of CogPar in these posts.
+
+CogPar is distributed under the MIT license, so feel free to use it in your own 
+projects.
+
+
+
+Changes in version 1.0.1
+========================
+
+* Fixed additional tokens bug.
+  The parser will now throw an exception if there are tokens left in the input
+  when parsing is complete.
+
+* Modified grammar to be more in line with other applications.
+  The grammar will now accept only simple values or bracketed expressions as
+  function arguments. The previous version would interpret sin(x)^2 as sin(x^2).
+  In this version it will be interpreted as (sin(x))^2. This also means that the
+  ambiguous expression sin x^2 will be interpreted as (sin(x))^2.
