@@ -177,7 +177,7 @@ public class Parser
       MultiplicationExpressionNode prod;
 
       // This means we are actually dealing with a product
-      // If expr is not already a sum, we have to create one
+      // If expr is not already a PRODUCT, we have to create one
       if (expression.getType() == ExpressionNode.MULTIPLICATION_NODE)
         prod = (MultiplicationExpressionNode) expression;
       else
@@ -186,7 +186,7 @@ public class Parser
       // reduce the input and recursively call sum_op
       boolean positive = lookahead.sequence.equals("*");
       nextToken();
-      ExpressionNode f = factor();
+      ExpressionNode f = signedFactor();
       prod.add(f, positive);
 
       return termOp(prod);
@@ -195,7 +195,26 @@ public class Parser
     // term_op -> EPSILON
     return expression;
   }
+  
+ /** handles the non-terminal signed_factor */
+  private ExpressionNode signedFactor()
+  {
+    // signed_factor -> PLUSMINUS factor
+    if (lookahead.token == Token.PLUSMINUS)
+    {
+      boolean positive = lookahead.sequence.equals("+");
+      nextToken();
+      ExpressionNode t = factor();
+      if (positive)
+        return t;
+      else
+        return new AdditionExpressionNode(t, false);
+    }
 
+    // signed_factor -> factor
+    return factor();
+  }
+  
   /** handles the non-terminal factor */
   private ExpressionNode factor()
   {
@@ -203,6 +222,8 @@ public class Parser
     ExpressionNode a = argument();
     return factorOp(a);
   }
+  
+ 
 
   /** handles the non-terminal factor_op */
   private ExpressionNode factorOp(ExpressionNode expr)
@@ -211,7 +232,7 @@ public class Parser
     if (lookahead.token == Token.RAISED)
     {
       nextToken();
-      ExpressionNode exponent = factor();
+      ExpressionNode exponent = signedFactor();
 
       return new ExponentiationExpressionNode(expr, exponent);
     }
@@ -227,7 +248,6 @@ public class Parser
     if (lookahead.token == Token.FUNCTION)
     {
       int function = FunctionExpressionNode.stringToFunction(lookahead.sequence);
-      if (function < 0) throw new ParserException("Unexpected Function %s found", lookahead);
       nextToken();
       ExpressionNode expr = argument();
       return new FunctionExpressionNode(function, expr);

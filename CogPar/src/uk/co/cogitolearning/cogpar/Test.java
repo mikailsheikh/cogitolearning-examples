@@ -35,11 +35,14 @@ public class Test
    */
   public static void main(String[] args)
   {
-        
+    
+    String exprstr = "2*(1+sin(pi/2))^2";
+    if (args.length>0) exprstr = args[0];
+    
     Parser parser = new Parser();
     try
     {
-      ExpressionNode expr = parser.parse("2*(1+sin(pi/2))^2");
+      ExpressionNode expr = parser.parse(exprstr);
       expr.accept(new SetVariable("pi", Math.PI));
       System.out.println("The value of the expression is "+expr.getValue());
       
