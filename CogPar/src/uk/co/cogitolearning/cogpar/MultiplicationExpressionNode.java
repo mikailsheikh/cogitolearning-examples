@@ -40,7 +40,7 @@ public class MultiplicationExpressionNode extends SequenceExpressionNode
   /**
    * Constructor to create a multiplication with the first term already added.
    * 
-   * @param node
+   * @param a
    *          the term to be added
    * @param positive
    *          a flag indicating whether the term is multiplied or divided
@@ -91,4 +91,5 @@ public class MultiplicationExpressionNode extends SequenceExpressionNode
     for (Term t: terms)
       t.expression.accept(visitor);
   }
+
 }
