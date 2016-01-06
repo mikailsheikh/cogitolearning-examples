@@ -15,45 +15,36 @@ public class CalculateValue {
         // https://en.wikipedia.org/wiki/Polish_notation
         Collections.reverse(list); // Scan the given prefix expression from right to left
         Stack<Double> stack = new Stack<Double>();
+        CalculateVisitor calculateVisitor = new CalculateVisitor(stack);
 
         for(ExpressionNode node: list){
             if (node.getType() == ExpressionNode.MULTIPLICATION_NODE){
-                double operand1 = stack.pop();
-                double operand2 = stack.pop();
-                stack.push(operand1 * operand2);
+                calculateVisitor.visit((MultiplicationExpressionNode) node);
                 continue;
             }
             if (node.getType() == ExpressionNode.DIVISION_NODE){
-                double operand1 = stack.pop();
-                double operand2 = stack.pop();
-                stack.push(operand1 / operand2);
+                calculateVisitor.visit((DivExpressionNode) node);
                 continue;
             }
 
             if (node.getType() == ExpressionNode.CONSTANT_NODE){
-                stack.push(node.getValue());
+                calculateVisitor.visit((ConstantExpressionNode) node);
                 continue;
             }
             if (node.getType() == ExpressionNode.ADDITION_NODE){
-                double operand1 = stack.pop();
-                double operand2 = stack.pop();
-
-                stack.push(operand1 + operand2);
+                calculateVisitor.visit((AdditionExpressionNode)node);
                 continue;
             }
             if (node.getType() == ExpressionNode.FUNCTION_NODE){
-                double operand1 = stack.pop();
-                stack.push(functionGetValue(((FunctionExpressionNode) node).getFunction(), operand1));
+                calculateVisitor.visit((FunctionExpressionNode) node);
                 continue;
             }
             if (node.getType() == ExpressionNode.EXPONENTIATION_NODE){
-                double base = stack.pop();
-                double exponent = stack.pop();
-                stack.push(Math.pow(base, exponent));
+                calculateVisitor.visit((ExponentiationExpressionNode) node);
                 continue;
             }
             if (node.getType() == ExponentiationExpressionNode.VARIABLE_NODE){
-                stack.push(node.getValue());
+                calculateVisitor.visit((VariableExpressionNode) node);
                 continue;
             }
             throw new EvaluationException("Invalid node " + node + "!");
