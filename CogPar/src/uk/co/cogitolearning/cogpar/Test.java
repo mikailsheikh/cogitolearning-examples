@@ -36,8 +36,8 @@ public class Test
   public static void main(String[] args)
   {
     
-//    String exprstr = "2*(1+sin(pi/2))^2";
-    String exprstr = "2*3";
+    String exprstr = "2*(1+sin(0.5 * pi))^2"; //=8  with pi/2 is problem because DivExpressionNode was introduced. Parser has to be fixed.
+//    String exprstr = "2*3";
     if (args.length>0) exprstr = args[0];
     
     Parser parser = new Parser();
@@ -46,9 +46,10 @@ public class Test
       ExpressionNode expr = parser.parse(exprstr);
       expr.accept(new SetVariable("pi", Math.PI));
 
-        GetValue getValue = new GetValue();
-        System.out.println("The value of the expression is " + getValue.run(expr));
-//      System.out.println("The value of the expression is "+expr.getValue());
+        CalculateValue calculateValue = new CalculateValue();
+        System.out.println("The value of the expression is " + calculateValue.calculate(expr));
+        System.out.println("The value of the expression is " + expr.getValue());
+        assert calculateValue.calculate(expr) == expr.getValue();
 
     }
     catch (ParserException e)

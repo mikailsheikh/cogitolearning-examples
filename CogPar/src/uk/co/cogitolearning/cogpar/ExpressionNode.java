@@ -43,6 +43,8 @@ public interface ExpressionNode
   public static final int EXPONENTIATION_NODE = 5;
   /** Node id for function nodes */
   public static final int FUNCTION_NODE = 6;
+  /** Node id for division nodes */
+  public static final int DIVISION_NODE = 7;
 
   /**
    * Returns the type of the node.ExpressionNode

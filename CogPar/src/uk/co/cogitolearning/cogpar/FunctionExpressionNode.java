@@ -191,4 +191,7 @@ public class FunctionExpressionNode implements ExpressionNode
     argument.accept(visitor);
   }
 
+  public int getFunction() {
+    return function;
+  }
 }

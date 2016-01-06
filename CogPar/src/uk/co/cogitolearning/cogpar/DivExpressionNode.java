@@ -25,61 +25,59 @@
 package uk.co.cogitolearning.cogpar;
 
 /**
- * A visitor that sets a variable with a specific name to a given value
+ * An ExpressionNode that handles divisions. The node can hold
+ * an two number of factors that are divided.
+ * 
  */
-public class SetVariable implements ExpressionNodeVisitor
+public class DivExpressionNode extends SequenceExpressionNode
 {
-
-  private String name;
-  private double value;
+  /**
+   * Default constructor.
+   */
+  public DivExpressionNode()
+  {}
 
   /**
-   * Construct the visitor with the name and the value of the variable to set
+   * Constructor to create a multiplication with the first term already added.
+   *
+   * @param a
+   *          the term to be added
+   * @param positive
+   *          a flag indicating whether the term is multiplied or divided
+   */
+  public DivExpressionNode(ExpressionNode a, boolean positive)
+  {
+    super(a, positive);
+  }
+
+  /**
+   * Returns the type of the node, in this case ExpressionNode.MULTIPLICATION_NODE
+   */
+  public int getType()
+  {
+    return ExpressionNode.DIVISION_NODE;
+  }
+
+  public double getValue()
+  {
+    // Not used
+    return 0;
+  }
+
+  /**
+   * Implementation of the visitor design pattern.
    * 
-   * @param name
-   *          the name of the variable
-   * @param value
-   *          the value of the variable
+   * Calls visit on the visitor and then passes the visitor on to the accept
+   * method of all the terms in the product.
+   * 
+   * @param visitor
+   *          the visitor
    */
-  public SetVariable(String name, double value)
+  public void accept(ExpressionNodeVisitor visitor)
   {
-    super();
-    this.name = name;
-    this.value = value;
+    visitor.visit(this);  
+    for (Term t: terms)
+      t.expression.accept(visitor);
   }
-
-  /**
-   * Checks the nodes name against the name to set and sets the value if the two
-   * strings match
-   */
-  public void visit(VariableExpressionNode node)
-  {
-    if (node.getName().equals(name))
-      node.setValue(value);
-  }
-
-  /** Do nothing */
-  public void visit(ConstantExpressionNode node)
-  {}
-
-  /** Do nothing */
-  public void visit(AdditionExpressionNode node)
-  {}
-
-  /** Do nothing */
-  public void visit(MultiplicationExpressionNode node)
-  {}
-
-  /** Do nothing */
-  public void visit(ExponentiationExpressionNode node)
-  {}
-
-  /** Do nothing */
-  public void visit(FunctionExpressionNode node)
-  {}
-
-  /** Do nothing */
-  public void visit(DivExpressionNode node)
-  {}
 
 }
