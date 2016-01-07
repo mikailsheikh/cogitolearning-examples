@@ -191,6 +191,11 @@ public class FunctionExpressionNode implements ExpressionNode
     argument.accept(visitor);
   }
 
+  @Override
+  public void acceptOnce(ExpressionNodeVisitor visitor) {
+    visitor.visit(this);
+  }
+
   public int getFunction() {
     return function;
   }

@@ -80,4 +80,9 @@ public class ExponentiationExpressionNode implements ExpressionNode
     base.accept(visitor);
     exponent.accept(visitor);
   }
+
+  @Override
+  public void acceptOnce(ExpressionNodeVisitor visitor) {
+    visitor.visit(this);
+  }
 }

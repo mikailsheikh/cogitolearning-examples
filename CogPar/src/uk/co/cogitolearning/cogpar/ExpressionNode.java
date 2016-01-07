@@ -73,4 +73,11 @@ public interface ExpressionNode
    */
   public void accept(ExpressionNodeVisitor visitor);
 
+  /**
+   * Method needed for the visitor design pattern but not iterate on child node.
+   *
+   * @param visitor
+   *          the visitor
+   */
+  public void acceptOnce(ExpressionNodeVisitor visitor);
 }

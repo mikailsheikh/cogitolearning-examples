@@ -101,4 +101,9 @@ public class VariableExpressionNode implements ExpressionNode
     visitor.visit(this);
   }
 
+  @Override
+  public void acceptOnce(ExpressionNodeVisitor visitor) {
+    visitor.visit(this);
+  }
+
 }

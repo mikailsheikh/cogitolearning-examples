@@ -83,4 +83,9 @@ public class ConstantExpressionNode implements ExpressionNode
   {
     visitor.visit(this);
   }
+
+  @Override
+  public void acceptOnce(ExpressionNodeVisitor visitor) {
+    visitor.visit(this);
+  }
 }

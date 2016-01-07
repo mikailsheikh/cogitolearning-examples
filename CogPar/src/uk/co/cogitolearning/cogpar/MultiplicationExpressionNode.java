@@ -92,4 +92,9 @@ public class MultiplicationExpressionNode extends SequenceExpressionNode
       t.expression.accept(visitor);
   }
 
+  @Override
+  public void acceptOnce(ExpressionNodeVisitor visitor) {
+    visitor.visit(this);
+  }
+
 }
