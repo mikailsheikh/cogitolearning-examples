@@ -24,6 +24,8 @@
 
 package uk.co.cogitolearning.cogpar;
 
+import java.util.Iterator;
+
 /**
  * An ExpressionNode that handles exponentiation. The node holds
  * a base and an exponent and calulates base^exponent 
@@ -84,5 +86,18 @@ public class ExponentiationExpressionNode implements ExpressionNode
   @Override
   public void acceptOnce(ExpressionNodeVisitor visitor) {
     visitor.visit(this);
+  }
+
+  @Override
+  public Iterator iterator() {
+    return new ExpressionNodeIterator(this);
+  }
+
+  public ExpressionNode getBase() {
+    return base;
+  }
+
+  public ExpressionNode getExponent() {
+    return exponent;
   }
 }

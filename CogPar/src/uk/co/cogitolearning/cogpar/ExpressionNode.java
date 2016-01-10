@@ -24,13 +24,14 @@
 
 package uk.co.cogitolearning.cogpar;
 
+import java.util.Iterator;
+
 /**
  * An interface for expression nodes.
  * 
  * Every concrete type of expression node has to implement this interface.
  */
-public interface ExpressionNode
-{
+public interface ExpressionNode extends Iterable {
   /** Node id for variable nodes */
   public static final int VARIABLE_NODE = 1;
   /** Node id for constant nodes */
@@ -80,4 +81,6 @@ public interface ExpressionNode
    *          the visitor
    */
   public void acceptOnce(ExpressionNodeVisitor visitor);
+
+  public Iterator<ExpressionNode> iterator();
 }

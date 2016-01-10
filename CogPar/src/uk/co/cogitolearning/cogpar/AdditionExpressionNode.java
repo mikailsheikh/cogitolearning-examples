@@ -24,6 +24,8 @@
 
 package uk.co.cogitolearning.cogpar;
 
+import java.util.Iterator;
+
 /**
  * An ExpressionNode that handles additions and subtractions. The node can hold
  * an arbitrary number of terms that are either added or subtraced from the sum.
@@ -96,6 +98,11 @@ public class AdditionExpressionNode extends SequenceExpressionNode
   @Override
   public void acceptOnce(ExpressionNodeVisitor visitor) {
     visitor.visit(this);
+  }
+
+  @Override
+  public Iterator iterator() {
+    return new ExpressionNodeIterator(this);
   }
 
 }

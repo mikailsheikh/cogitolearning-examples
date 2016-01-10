@@ -24,6 +24,9 @@
 
 package uk.co.cogitolearning.cogpar;
 
+import java.util.Iterator;
+import java.util.NoSuchElementException;
+
 /**
  * An ExpressionNode that handles multiplications and divisions. The node can hold
  * an arbitrary number of factors that are either multiplied or divided to the product.
@@ -95,6 +98,11 @@ public class MultiplicationExpressionNode extends SequenceExpressionNode
   @Override
   public void acceptOnce(ExpressionNodeVisitor visitor) {
     visitor.visit(this);
+  }
+
+  @Override
+  public Iterator<ExpressionNode> iterator() {
+    return new ExpressionNodeIterator(this);
   }
 
 }

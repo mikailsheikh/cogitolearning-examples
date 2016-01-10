@@ -24,6 +24,8 @@
 
 package uk.co.cogitolearning.cogpar;
 
+import java.util.Iterator;
+
 /**
  * An ExpressionNode that stores a named variable
  */
@@ -82,10 +84,10 @@ public class VariableExpressionNode implements ExpressionNode
    */
   public double getValue()
   {
-    if (valueSet)
-      return value;
-    else
+    if (!valueSet)
       throw new EvaluationException("Variable '" + name + "' was not initialized.");
+
+    return value;
   }
 
   /**
@@ -104,6 +106,11 @@ public class VariableExpressionNode implements ExpressionNode
   @Override
   public void acceptOnce(ExpressionNodeVisitor visitor) {
     visitor.visit(this);
+  }
+
+  @Override
+  public Iterator iterator() {
+    return new ExpressionNodeIterator(this);
   }
 
 }

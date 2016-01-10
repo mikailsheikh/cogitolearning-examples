@@ -24,6 +24,8 @@
 
 package uk.co.cogitolearning.cogpar;
 
+import java.util.Iterator;
+
 /**
  * An ExpressionNode that handles mathematical functions.
  * 
@@ -196,7 +198,16 @@ public class FunctionExpressionNode implements ExpressionNode
     visitor.visit(this);
   }
 
+  @Override
+  public Iterator iterator() {
+    return new ExpressionNodeIterator(this);
+  }
+
   public int getFunction() {
     return function;
+  }
+
+  public ExpressionNode getArgument() {
+    return argument;
   }
 }

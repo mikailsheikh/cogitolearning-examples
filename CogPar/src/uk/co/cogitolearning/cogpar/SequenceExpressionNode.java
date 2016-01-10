@@ -25,6 +25,7 @@
 package uk.co.cogitolearning.cogpar;
 
 import java.util.ArrayList;
+import java.util.Iterator;
 
 /**
  * A base class for AdditionExpressionNode and MultiplicationExpressionNode.
@@ -34,6 +35,11 @@ import java.util.ArrayList;
  */
 public abstract class SequenceExpressionNode implements ExpressionNode
 {
+  @Override
+  public Iterator<ExpressionNode> iterator() {
+    return null;
+  }
+
   /**
    * An inner class that defines a pair containing an ExpressionNode and a
    * boolean flag.

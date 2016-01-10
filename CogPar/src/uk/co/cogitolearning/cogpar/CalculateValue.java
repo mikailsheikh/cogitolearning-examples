@@ -2,6 +2,7 @@ package uk.co.cogitolearning.cogpar;
 
 import java.util.ArrayList;
 import java.util.Collections;
+import java.util.Iterator;
 import java.util.Stack;
 
 
@@ -24,9 +25,15 @@ public class CalculateValue {
 
 
     public double calculate(ExpressionNode expr){
-        PolishNotationVisitor visitor = new PolishNotationVisitor();
-        expr.accept(visitor);
-        return CalculateValue.getValue(visitor.list);
+//        PolishNotationVisitor visitor = new PolishNotationVisitor();
+//        expr.accept(visitor);
+        ArrayList<ExpressionNode> polishNotationList = new ArrayList<ExpressionNode>();
+
+        Iterator<ExpressionNode> it = expr.iterator();
+        while(it.hasNext())
+            polishNotationList.add(it.next());
+
+        return CalculateValue.getValue(polishNotationList);
     }
 
 }

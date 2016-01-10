@@ -52,7 +52,9 @@ public class ReversePolishNotationTest {
         multiplication.add(exponent, true);
 
         root = multiplication;
-        root.accept(new SetVariable("pi", Math.PI));
+
+        Algorithms.setVariable(root, "pi", Math.PI);
+
         root.accept(visitor);
 
         Assert.assertEquals(6144.0, CalculateValue.getValue(visitor.list), 0.1);

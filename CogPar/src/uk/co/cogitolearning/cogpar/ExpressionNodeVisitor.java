@@ -51,5 +51,5 @@ public interface ExpressionNodeVisitor
   /**  Visit a FunctionExpressionNode */
   public void visit(FunctionExpressionNode node);
 
-  public void visit(DivExpressionNode divExpressionNode);
+  public void visit(DivExpressionNode node);
 }

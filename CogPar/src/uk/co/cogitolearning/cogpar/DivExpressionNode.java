@@ -24,6 +24,8 @@
 
 package uk.co.cogitolearning.cogpar;
 
+import java.util.Iterator;
+
 /**
  * An ExpressionNode that handles divisions. The node can hold
  * an two number of factors that are divided.
@@ -83,6 +85,11 @@ public class DivExpressionNode extends SequenceExpressionNode
   @Override
   public void acceptOnce(ExpressionNodeVisitor visitor) {
     visitor.visit(this);
+  }
+
+  @Override
+  public Iterator iterator() {
+    return new ExpressionNodeIterator(this);
   }
 
 }

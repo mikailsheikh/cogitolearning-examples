@@ -24,6 +24,9 @@
 
 package uk.co.cogitolearning.cogpar;
 
+import java.util.Iterator;
+import java.util.NoSuchElementException;
+
 /**
  * An ExpressionNode that stores a constant value
  */
@@ -87,5 +90,10 @@ public class ConstantExpressionNode implements ExpressionNode
   @Override
   public void acceptOnce(ExpressionNodeVisitor visitor) {
     visitor.visit(this);
+  }
+
+  @Override
+  public Iterator iterator() {
+    return new ExpressionNodeIterator(this);
   }
 }
