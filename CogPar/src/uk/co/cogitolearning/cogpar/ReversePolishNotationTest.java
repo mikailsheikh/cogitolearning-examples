@@ -19,21 +19,13 @@ public class ReversePolishNotationTest {
 
 
         Assert.assertEquals(20.0, multi.getValue(), 0.1);
-
-        PolishNotationVisitor visitor = new PolishNotationVisitor();
-
-        multi.accept(visitor);
-        System.out.println("The value of the visitation is " + visitor.list);
-
-        // * + 2 3 4
-        Assert.assertEquals(20.0, CalculateValue.getValue(visitor.list), 0.1);
-
+        Assert.assertEquals(20.0, CalculateValue.calculate(multi), 0.1);
+        Assert.assertEquals(multi.getValue(), CalculateValue.calculate(multi), 0.1);
     }
     
     @Test
     public void extendedTest(){
         ExpressionNode root;
-        PolishNotationVisitor visitor = new PolishNotationVisitor();
 
 
         // String exprstr = "6*(3+sin(pi/2))^5"; //=6144
@@ -55,9 +47,7 @@ public class ReversePolishNotationTest {
 
         Algorithms.setVariable(root, "pi", Math.PI);
 
-        root.accept(visitor);
-
-        Assert.assertEquals(6144.0, CalculateValue.getValue(visitor.list), 0.1);
+        Assert.assertEquals(6144.0, CalculateValue.calculate(root), 0.1);
     }
 
 }

@@ -1,67 +1,66 @@
 package uk.co.cogitolearning.cogpar;
 
+import java.util.ArrayList;
 import java.util.Iterator;
-import java.util.Stack;
 
 public class ExpressionNodeIterator implements Iterator<ExpressionNode> {
-    private final Stack<ExpressionNode> stack;
+    private final ArrayList<ExpressionNode> list = new ArrayList<ExpressionNode>();
 
     public ExpressionNodeIterator(ExpressionNode expressionNode) {
-        stack = new Stack<ExpressionNode>();
-        IteratorVisitor visitor = new IteratorVisitor(stack);
+        IteratorVisitor visitor = new IteratorVisitor(list);
         expressionNode.acceptOnce(visitor);
     }
 
     @Override
     public boolean hasNext() {
-        return !stack.isEmpty();
+        return !list.isEmpty();
     }
 
     @Override
     public ExpressionNode next() {
-        return stack.pop();
+        return list.remove(0);
     }
 
     private class IteratorVisitor implements ExpressionNodeVisitor {
-        private Stack<ExpressionNode> stack;
+        private ArrayList<ExpressionNode> list;
 
-        public IteratorVisitor(Stack<ExpressionNode> stack) {
-            this.stack = stack;
+        public IteratorVisitor(ArrayList<ExpressionNode> stack) {
+            this.list = stack;
         }
 
         public void visit(VariableExpressionNode node) {
-            stack.push(node);
+            list.add(node);
         }
 
         public void visit(ConstantExpressionNode node) {
-            stack.push(node);
+            list.add(node);
         }
 
         public void visit(AdditionExpressionNode node) {
-            stack.push(node);
+            list.add(node);
             for (SequenceExpressionNode.Term t : node.terms)
                 t.expression.acceptOnce(this);
         }
 
         public void visit(MultiplicationExpressionNode node) {
-            stack.push(node);
+            list.add(node);
             for (SequenceExpressionNode.Term t : node.terms)
                 t.expression.acceptOnce(this);
         }
 
         public void visit(ExponentiationExpressionNode node) {
-            stack.push(node);
+            list.add(node);
             node.getBase().acceptOnce(this);
             node.getExponent().acceptOnce(this);
         }
 
         public void visit(FunctionExpressionNode node) {
-            stack.push(node);
+            list.add(node);
             node.getArgument().acceptOnce(this);
         }
 
         public void visit(DivExpressionNode node) {
-            stack.push(node);
+            list.add(node);
             for (SequenceExpressionNode.Term t : node.terms)
                 t.expression.acceptOnce(this);
 

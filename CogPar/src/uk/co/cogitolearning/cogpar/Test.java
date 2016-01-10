@@ -24,8 +24,6 @@
 
 package uk.co.cogitolearning.cogpar;
 
-import java.util.Iterator;
-
 /**
  * Test the Parser
  */
@@ -48,11 +46,9 @@ public class Test
         ExpressionNode expr = parser.parse(exprstr);
         Algorithms.setVariable(expr, "pi", Math.PI);
 
-
-        CalculateValue calculateValue = new CalculateValue();
-        System.out.println("The value of the expression is " + calculateValue.calculate(expr));
+        System.out.println("The value of the expression is " + CalculateValue.calculate(expr));
         System.out.println("The value of the expression is " + expr.getValue());
-        assert calculateValue.calculate(expr) == expr.getValue();
+        assert CalculateValue.calculate(expr) == expr.getValue();
 
     }
     catch (ParserException e)
