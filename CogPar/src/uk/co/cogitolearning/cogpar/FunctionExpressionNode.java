@@ -56,6 +56,8 @@ public class FunctionExpressionNode implements ExpressionNode
   public static final int LOG = 10;
   /** function id for the log2 function */
   public static final int LOG2 = 11;
+  /** function id for the abs function */
+  public static final int ABS = 12;
 
   /** the id of the function to apply to the argument */
   private int function;
@@ -122,6 +124,8 @@ public class FunctionExpressionNode implements ExpressionNode
       return FunctionExpressionNode.LOG;
     if (str.equals("log2"))
       return FunctionExpressionNode.LOG2;
+    if (str.equals("abs"))
+        return FunctionExpressionNode.ABS;
 
     throw new ParserException("Unexpected Function " + str + " found");
   }
@@ -136,7 +140,7 @@ public class FunctionExpressionNode implements ExpressionNode
    */
   public static String getAllFunctions()
   {
-    return "sin|cos|tan|asin|acos|atan|sqrt|exp|ln|log|log2";
+    return "sin|cos|tan|asin|acos|atan|sqrt|exp|ln|log|log2|abs";
   }
 
   /**
@@ -171,6 +175,9 @@ public class FunctionExpressionNode implements ExpressionNode
         return Math.log(argument.getValue()) * 0.43429448190325182765;
       case LOG2:
         return Math.log(argument.getValue()) * 1.442695040888963407360;
+      case ABS:
+          return Math.abs(argument.getValue());
+        
     }
 
     throw new EvaluationException("Invalid function id "+function+"!");
