@@ -31,25 +31,25 @@ package co.uk.cogitolearning.cogpar;
  * accept methods. The expression nodes, in turn, call the appropriate visit
  * method of the expression node visitor.
  */
-public interface ExpressionNodeVisitor
+public interface ExpressionNodeVisitor<T>
 {
   /** Visit a VariableExpressionNode */
-  public void visit(VariableExpressionNode node);
+  T visit(VariableExpressionNode node);
 
   /**  Visit a ConstantExpressionNode */
-  public void visit(ConstantExpressionNode node);
+  T visit(ConstantExpressionNode node);
 
   /**  Visit a AdditionExpressionNode */
-  public void visit(AdditionExpressionNode node);
+  T visit(AdditionExpressionNode node);
 
   /**  Visit a MultiplicationExpressionNode */
-  public void visit(MultiplicationExpressionNode node);
+  T visit(MultiplicationExpressionNode node);
 
   /**  Visit a ExponentiationExpressionNode */
-  public void visit(ExponentiationExpressionNode node);
+  T visit(ExponentiationExpressionNode node);
 
   /**  Visit a FunctionExpressionNode */
-  public void visit(FunctionExpressionNode node);
+  T visit(FunctionExpressionNode node);
 
-  public void visit(DivExpressionNode node);
+  T visit(DivExpressionNode node);
 }

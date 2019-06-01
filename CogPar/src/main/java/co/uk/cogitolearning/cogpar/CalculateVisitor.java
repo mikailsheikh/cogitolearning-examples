@@ -5,7 +5,7 @@ import java.util.Stack;
 
 import static co.uk.cogitolearning.cogpar.FunctionExpressionNode.*;
 
-public class CalculateVisitor implements ExpressionNodeVisitor{
+public class CalculateVisitor implements ExpressionNodeVisitor<Void>{
     private Stack<Double> stack;
 
     public CalculateVisitor(Stack<Double> stack) {
@@ -44,41 +44,48 @@ public class CalculateVisitor implements ExpressionNodeVisitor{
         throw new EvaluationException("Invalid function id "+function+"!");
     }
 
-    public void visit(VariableExpressionNode node) {
+    public Void visit(VariableExpressionNode node) {
         stack.push(node.getValue());
+        return null;
     }
 
-    public void visit(ExponentiationExpressionNode node) {
+    public Void visit(ExponentiationExpressionNode node) {
         double base = stack.pop();
         double exponent = stack.pop();
         stack.push(Math.pow(base, exponent));
+        return null;
     }
 
-    public void visit(FunctionExpressionNode node) {
+    public Void visit(FunctionExpressionNode node) {
         double operand1 = stack.pop();
         stack.push(functionGetValue(node.getFunction(), operand1));
+        return null;
     }
 
-    public void visit(AdditionExpressionNode node) {
+    public Void visit(AdditionExpressionNode node) {
         double operand1 = stack.pop();
         double operand2 = stack.pop();
 
         stack.push(operand1 + operand2);
+        return null;
     }
 
-    public void visit(ConstantExpressionNode node) {
+    public Void visit(ConstantExpressionNode node) {
         stack.push(node.getValue());
+        return null;
     }
 
-    public void visit(DivExpressionNode node) {
+    public Void visit(DivExpressionNode node) {
         double operand1 = stack.pop();
         double operand2 = stack.pop();
         stack.push(operand1 / operand2);
+        return null;
     }
 
-    public void visit(MultiplicationExpressionNode node) {
+    public Void visit(MultiplicationExpressionNode node) {
         double operand1 = stack.pop();
         double operand2 = stack.pop();
         stack.push(operand1 * operand2);
+        return null;
     }
 }

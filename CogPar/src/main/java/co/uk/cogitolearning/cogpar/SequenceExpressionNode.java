@@ -72,7 +72,7 @@ public abstract class SequenceExpressionNode implements ExpressionNode
    */
   public SequenceExpressionNode()
   {
-    this.terms = new ArrayList<Term>();
+    this.terms = new ArrayList<>();
   }
 
   /**
@@ -85,7 +85,7 @@ public abstract class SequenceExpressionNode implements ExpressionNode
    */
   public SequenceExpressionNode(ExpressionNode a, boolean positive)
   {
-    this.terms = new ArrayList<Term>();
+    this.terms = new ArrayList<>();
     this.terms.add(new Term(positive, a));
   }
 

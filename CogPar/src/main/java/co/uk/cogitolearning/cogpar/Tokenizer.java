@@ -79,8 +79,8 @@ public class Tokenizer
   public Tokenizer()
   {
     super();
-    tokenInfos = new LinkedList<TokenInfo>();
-    tokens = new LinkedList<Token>();
+    tokenInfos = new LinkedList<>();
+    tokens = new LinkedList<>();
   }
 
   /**
