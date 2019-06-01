@@ -1,4 +1,4 @@
-package uk.co.cogitolearning.cogpar;
+package co.uk.cogitolearning.cogpar;
 
 import org.junit.Assert;
 import org.junit.Test;

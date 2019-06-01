@@ -1,9 +1,9 @@
-package uk.co.cogitolearning.cogpar;
+package co.uk.cogitolearning.cogpar;
 
 
 import java.util.Stack;
 
-import static uk.co.cogitolearning.cogpar.FunctionExpressionNode.*;
+import static co.uk.cogitolearning.cogpar.FunctionExpressionNode.*;
 
 public class CalculateVisitor implements ExpressionNodeVisitor{
     private Stack<Double> stack;

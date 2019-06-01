@@ -22,7 +22,7 @@
  * THE SOFTWARE.
  */
 
-package uk.co.cogitolearning.cogpar;
+package co.uk.cogitolearning.cogpar;
 
 /**
  * A token that is produced by Tokenizer and fed into Parser.parse
